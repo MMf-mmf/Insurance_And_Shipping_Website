@@ -1,0 +1,8 @@
+{% load django_htmx %}
+{% load static %}
+    <script src="{% static 'js/htmx.min.js' %}" defer></script>
+    <script src="{% static 'js/alpine.min.js' %}" defer></script>
+    <script src="{% static 'flowbite/dist/flowbite.min.js' %}" defer></script>
+    <script src="{% static 'flowbite/dist/datepicker.min.js' %}"></script>
+    {% comment %} <script src="{% static 'js/base.js' %}" defer></script>  {% endcomment %}
+{% django_htmx_script %}

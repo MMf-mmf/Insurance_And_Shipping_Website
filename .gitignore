@@ -1,0 +1,16 @@
+my_env/
+venv/
+
+*.pyc
+*.json
+*.pem
+# dont track .pyc files no matter where they are
+**/**/*.pyc
+__pycache__/
+*__pycache__/
+*media/
+*/migrations/
+notepad.txt
+staticfiles/
+googleauth.json
+

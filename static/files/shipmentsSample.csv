@@ -1,0 +1,13 @@
+OrderID,Value,ShipDate,ShippingMethodSelected,TrackingNumber,ShipFirstName,ShipLastName,ShipCompanyName,ShipAddress1,ShipAddress2,ShipCity,ShipState,ShipZipCode,ShipCountry,Shipper
+8949471,5000,9/8/2022,DHL eCommerce,1Z9XV6414292534567,Jonson,James,recipients Company Name,123 main street,if there is a second address,Sarasota,FL,34234-4822,United States,Your Company Name
+8949472,4200,9/8/2022,DHL eCommerce International,1Z9XV6414292534568,Jonson,James,recipients Company Name,124 main street,if there is a second address,Mong Kok Kowloon,Hong Kong,999077,Hong Kong,Your Company Name
+8949473,3700,9/8/2022,DHL Express Domestic,1Z9XV6414292534569,Jonson,James,recipients Company Name,125 main street,if there is a second address,Dubai,Dubai,1112142,U.A.E.,Your Company Name
+8949474,2600,9/8/2022,DHL Express International,1Z9XV6414292534570,Jonson,James,recipients Company Name,126 main street,if there is a second address,Taichung City,TAIWAN,401,Taiwan,Your Company Name
+8949475,1700,9/8/2022,FedEx Domestic,1Z9XV6414292534571,Jonson,James,recipients Company Name,127 main street,if there is a second address,Las Vegas,NV,89178-1302,United States,Your Company Name
+8949476,1700,9/8/2022,FedEx International,1Z9XV6414292534572,Jonson,James,recipients Company Name,128 main street,if there is a second address,Peachtree city,GA,30269,United States,Your Company Name
+8949477,1400,9/8/2022,LaserShip Domestic,1Z9XV6414292534573,Jonson,James,recipients Company Name,129 main street,if there is a second address,Portland,OR,97230-1100,United States,Your Company Name
+8949478,1300,9/8/2022,UPS Domestic,1Z9XV6414292534574,Jonson,James,recipients Company Name,130 main street,if there is a second address,Taichung City,Taichung City,40863,Taiwan,Your Company Name
+8949479,1200,9/8/2022,UPS International,1Z9XV6414292534575,Jonson,James,recipients Company Name,131 main street,if there is a second address,LEÓN,GUANAJUATO,37669,Mexico,Your Company Name
+8949480,1100,9/8/2022,UPS Domestic B to B,1Z9XV6414292534576,Jonson,James,recipients Company Name,132 main street,if there is a second address,Boulder City,NV,89005-3647,United States,Your Company Name
+8949481,1100,9/8/2022,USPS Domestic,1Z9XV6414292534577,Jonson,James,recipients Company Name,133 main street,if there is a second address,Hillsboro,OR,97123-9159,United States,Your Company Name
+8949482,900,9/8/2022,USPS International,1Z9XV6414292534578,Jonson,James,recipients Company Name,134 main street,if there is a second address,Sandia Park,NM,87047-9354,United States,Your Company Name

@@ -1,0 +1,17 @@
+ <!DOCTYPE html>
+<html>
+    <body>
+        <div style="background-color:#eee;padding:10px 20px;">
+            <h2 style="font-family:Georgia, 'Times New Roman', Times, serif;color#454349;">We have Recieved Your Claim</h2>
+        </div>
+        <div style="padding:20px 0px">
+            <h2>Claim id#: <span>{{claim_id}}</span></h2>
+            <h2>Tracking Number: <span>{{tracking_number}}</span></h2>
+            <h2>Total Claim Amount <span>{{claim_amount}}</span></h2>
+            <div style="background-color:#eee;padding:10px 20px;">
+                {% url 'admin_claim_detail' claim_id=claim_id as claim_url %}
+                <h3> <a href="{{base_url}}{{claim_url}}">view calim here</a></h3>
+            </div>
+        </div>
+    </body>
+</html>

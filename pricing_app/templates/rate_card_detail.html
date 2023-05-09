@@ -1,0 +1,104 @@
+{% extends 'base/base.html' %}
+{% load widget_tweaks %}
+{% block title %}Rate Card Detail{% endblock %}
+
+{% block content %}
+<div class='flex flex-col justify-center items-center w-full'>
+    {% comment %} THE ACTUAL RATE_CARD {% endcomment %}
+    <form method="post" class='shadow-md p-6 rounded-lg w-5/6 mt-9' x-on:submit="disabledField = false" x-data=" {selectedOption: '{{create_rate_card_form.tier_rank.initial}}', disabledField: '{{create_rate_card_form.tier_rank.widget.attrs.disabled}}'} ">
+        <h1 class="text-2xl font-bold text-gray-900">Rate Card Detail</h1>
+        <h3 class="block mb-6 text-lg font-medium text-gray-900 underline text-center">{{page_header}}</h3>
+        {% csrf_token %}
+        {% include 'includes/form_errors.html' with errors=create_rate_card_form.non_field_errors %}
+        <div class="grid gap-6 mb-6 md:grid-cols-2">
+            <div>
+                <label for="{{create_rate_card_form.tier_rank.id_for_label}}" class="block mb-2 text-sm font-medium text-gray-900">Tier</label>
+                {% render_field create_rate_card_form.tier_rank x-model="selectedOption" x-bind::disabled="disabledField" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"%}
+                {% include 'includes/form_errors.html' with errors=create_rate_card_form.tier_rank.errors %}
+            </div>
+            <div>
+                <label for="{{create_rate_card_form.minimum_spend.id_for_label}}" class="block mb-2 text-sm font-medium text-gray-900">Minimum Spend Needed to qualify for tier</label>
+                {% render_field create_rate_card_form.minimum_spend class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" %}
+                {% include 'includes/form_errors.html' with errors=create_rate_card_form.minimum_spend.errors %}
+            </div>
+            <div>
+                <label for="{{create_rate_card_form.affective_date.id_for_label}}" class="block mb-2 text-sm font-medium text-gray-900">Effective Date</label>
+                {% render_field create_rate_card_form.affective_date  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"  %}
+                {% include 'includes/form_errors.html' with errors=create_rate_card_form.affective_date.errors %}
+            </div>
+            <div>
+                <label for="{{create_rate_card_form.expiration_date.id_for_label}}" class="block mb-2 text-sm font-medium text-gray-900">Expiration Date</label>
+                {% render_field create_rate_card_form.expiration_date  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"  %}
+                {% include 'includes/form_errors.html' with errors=create_rate_card_form.expiration_date.errors %}
+            </div>
+            <div>
+                <label for="{{create_rate_card_form.description.id_for_label}}" class="block mb-2 text-sm font-medium text-gray-900">Description</label>
+                {% render_field create_rate_card_form.description  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="write a brief description" %}
+                {% include 'includes/form_errors.html' with errors=create_rate_card_form.description.errors %}
+                {% include 'includes/form_errors.html' with errors=create_rate_card_form.description.errors %}
+            </div>
+            <div x-show=" selectedOption == '4' ">
+                <label for="{{create_rate_card_form.user.id_for_label}}" class="block mb-2 text-sm font-medium text-gray-900">Select user for this Custome tier</label>
+                {% render_field create_rate_card_form.user  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"%}
+                {% include 'includes/form_errors.html' with errors=create_rate_card_form.user.errors %}
+            </div>
+        </div>
+        <div class='flex justify-between'>
+            <button type="submit" name='submit' class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Submit</button>
+            <button type="submit" name='delete' class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">delete</button>
+        </div>
+    </form> 
+
+
+    {% comment %} ADD A NEW CARRIER TO THE OBOVE RATE_CARD {% endcomment %}
+  
+  
+    {% if create_rate_card_item_form.fields.carrier.choices|length > 0 %}
+        <form method="post" action='{% url "pricing_app:create_rate_card_item" rate_card.id %}' class='shadow-md p-6 rounded-lg w-5/6 mt-9'>
+            <h1 class="text-2xl font-bold text-gray-900">Add Shiping Service To The obove Rate Card</h1>
+            <h3 class="block mb-6 text-lg font-medium text-gray-900 underline text-center">{{page_header}}</h3>
+            {% csrf_token %}
+            {% include 'includes/form_errors.html' with errors=create_rate_card_item_form.non_field_errors %}
+            <div class="grid gap-6 mb-6 md:grid-cols-2">
+                <div>
+                    <label for="{{create_rate_card_item_form.carrier.id_for_label}}" class="block mb-2 text-sm font-medium text-gray-900">Carrier</label>
+                    {% render_field create_rate_card_item_form.carrier class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"%}
+                    {% include 'includes/form_errors.html' with errors=create_rate_card_item_form.carrier.errors %}
+                </div>
+                <div>
+                    <label for="{{create_rate_card_item_form.cost_per_DVU.id_for_label}}" class="block mb-2 text-sm font-medium text-gray-900">cost per DVU</label>
+                    {% render_field create_rate_card_item_form.cost_per_DVU class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" %}
+                    {% include 'includes/form_errors.html' with errors=create_rate_card_item_form.cost_per_DVU.errors %}
+                </div>
+                <div>
+                    <label for="{{create_rate_card_item_form.parcel_limit_price_cap.id_for_label}}" class="block mb-2 text-sm font-medium text-gray-900">parcel limit price cap</label>
+                    {% render_field create_rate_card_item_form.parcel_limit_price_cap  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"  %}
+                    {% include 'includes/form_errors.html' with errors=create_rate_card_item_form.parcel_limit_price_cap.errors %}
+                </div>
+                
+            </div>
+            <div class='flex justify-between'>
+                <button type="submit" name='submit' class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Submit</button>
+            </div>
+        </form> 
+    {% endif %}
+
+    {% comment %} A LIST OF ALL THE RATE CARD ITEMS ATTACHED TO THIS RATE CARD {% endcomment %}
+     <h1 class="text-3xl font-bold text-gray-900 mt-10">Rate Card Services/Carriers</h1>
+    <div class='shadow-md p-6 rounded-lg text-center flex flex-row flex-wrap justify-center w-5/6'>
+        {% for rate_card_item in rate_card_items %}
+            <div class="m-5 max-w-sm p-6 bg-gray-50  border border-gray-200 rounded-lg shadow ">
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">Carrier: <span class="text-orange-400">{{ rate_card_item.carrier }}</span></h5>
+                <h5 class="mb-2 text-1xl font-bold tracking-tight text-gray-700 ">Cost per DVU ${{rate_card_item.cost_per_DVU}}</h5>
+                <h5 class="mb-2 text-1xl font-bold tracking-tight text-gray-700 ">Parcel limit Price Cap ${{rate_card_item.parcel_limit_price_cap}}</h5>
+                <form method="post" action='{% url "pricing_app:delete_rate_card_item" rate_card_item.id rate_card.id %}' class='mb-0 mt-4'>
+                    {% csrf_token %}
+                    <button type="submit" name='delete' class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">delete</button>
+                </form>
+            </div>
+        {% empty %}
+            <h3 class="font-bold">No  Service Created yet</h3>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

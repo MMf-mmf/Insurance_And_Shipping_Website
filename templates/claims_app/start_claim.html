@@ -1,0 +1,231 @@
+{% extends 'base/base.html' %}
+{% load widget_tweaks %}
+
+
+{% block title %}File claim{% endblock %}
+
+{% block content %} 
+
+
+<div class='rounded-lg md:p-8  flex items-center justify-center flex-col mb-4' x-data="{ signatureData: '' }">
+    <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-700 md:text-5xl lg:text-6xl ">Start Insurance Claim</h1>
+    <p class="mb-6  text-lg font-bold text-gray-500 lg:text-xl sm:px-16 xl:px-48">please fill out carfully as the data you inpout strongly affects the the claims out come.</p>
+    
+    <form method="post" class='w-3/4 shadow-lg p-10' x-ref="signatureForm">
+        {% csrf_token %}
+        {% include 'includes/form_errors.html' with errors=claim_form.non_field_errors %}
+       <div class="inline-flex items-center justify-center w-full">
+            <hr class="w-full h-px my-8 bg-gray-400 border-0">
+            <span class="absolute px-4 font-medium text-gray-500 -translate-x-1/2 bg-gray-100 left-1/2  d">Tell Us About Yourself</span>
+        </div>
+        <div class="relative z-0 w-full mb-6 group">
+                {% render_field claim_form.email  placeholder=" "  class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" %}
+                <label for="claim_form.email.id_for_label" class="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">email</label>
+            </div>
+            {% include 'includes/claim_form_errors.html' with errors=claim_form.email.errors %}
+            
+        <div class="grid md:grid-cols-2 md:gap-6">
+            <div class="relative z-0 w-full mb-6 group">
+                {% render_field claim_form.company_name  placeholder=" "  class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" %}
+                <label for="claim_form.company_name.id_for_label" class="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Company Name</label>
+            </div>
+            {% include 'includes/claim_form_errors.html' with errors=claim_form.company_name.errors %}
+
+            <div class="relative z-0 w-full mb-6 group">
+                {% render_field  claim_form.contact_name placeholder=' ' class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"%}
+                <label for="claim_form.contact_name.id_for_lable" class="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Contact Name</label>
+            </div>
+                {% include 'includes/claim_form_errors.html' with errors=claim_form.contact_name.errors %}
+        </div>
+     
+        <div class="grid md:grid-cols-2 md:gap-6">
+                <div class="relative z-0 w-full mb-6 group">
+                    {% render_field  claim_form.check_remit_address placeholder=' ' class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" %}
+                    <label for="claim_form.check_remit_address.id_for_lable" class="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Check remit Address</label>
+                </div>
+                {% include 'includes/claim_form_errors.html' with errors=claim_form.check_remit_address.errors %}
+
+                <div class="relative z-0 w-full mb-6 group">
+                    {% render_field  claim_form.check_remit_city placeholder=' ' class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"%}
+                    <label for="claim_form.check_remit_city.id_for_lable" class="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Check remit City</label>
+                </div>
+                {% include 'includes/claim_form_errors.html' with errors=claim_form.check_remit_city.errors %}
+        </div>
+  
+        <div class="grid md:grid-cols-2 md:gap-6">
+            <div class="relative z-0 w-full mb-6 group">
+                {% render_field  claim_form.check_remit_zip_code placeholder=' ' class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" %}
+                <label for="claim_form.check_remit_zip_code.id_for_lable" class="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Check remit zip code</label>
+            </div>
+            {% include 'includes/claim_form_errors.html' with errors=claim_form.check_remit_zip_code.errors %}
+
+            <div class="relative z-0 w-full mb-6 group">
+                {% render_field  claim_form.check_remit_country placeholder=' ' class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"%}
+                <label for="claim_form.check_remit_country.id_for_label" class="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Check Country</label>
+            </div>
+            {% include 'includes/claim_form_errors.html' with errors=claim_form.check_remit_country.errors %}
+        </div>
+
+        <div class="grid md:grid-cols-2 md:gap-6">
+            <div class="relative z-0 w-full mb-6 group">
+                {% render_field  claim_form.phone placeholder=' ' class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" %}
+                <label for="claim_form.phone.id_for_lable" class="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Phone</label>
+            </div>
+            {% include 'includes/claim_form_errors.html' with errors=claim_form.phone.errors %}
+
+            <div class="relative z-0 w-full mb-6 group">
+                {% render_field  claim_form.fax placeholder=' ' class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"%}
+                <label for="claim_form.fax.id_for_label" class="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Fax</label>
+            </div>
+            {% include 'includes/claim_form_errors.html' with errors=claim_form.fax.errors %}
+        </div>
+
+        <div class="inline-flex items-center justify-center w-full">
+            <hr class="w-full h-px my-8 bg-gray-400 border-0">
+            <span class="absolute px-4 font-medium text-gray-500 -translate-x-1/2 bg-gray-100 left-1/2  d">Tell Us About The Package</span>
+        </div>
+
+        <div class="grid md:grid-cols-3 md:gap-6">
+            <div class="relative z-0 w-full mb-6 group">
+                <label for="claim_form.item_description.id_for_label" class=" text-gray-500 peer-focus:text-blue-600">Item Description</label>
+                {% render_field claim_form.item_description class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-300  appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" %}
+            </div>
+            {% include 'includes/claim_form_errors.html' with errors=claim_form.item_description.errors %}
+            <div class="relative z-0 w-full mb-6 group">        
+            <label for="claim_form.invoice_or_package_id.id_for_label" class=" text-gray-500 peer-focus:text-blue-600">Invoice/package #ID</label>
+                {% render_field claim_form.invoice_or_package_id class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-300  appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" %}
+            </div>
+            {% include 'includes/claim_form_errors.html' with errors=claim_form.invoice_or_package_id.errors %}
+            <div class="relative z-0 w-full mb-6 group">        
+            <label for="claim_form.tracking_number.id_for_label" class=" text-gray-500 peer-focus:text-blue-600">Tracking Number</label>
+                {% render_field claim_form.tracking_number class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-300  appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" %}
+            </div>
+            {% include 'includes/claim_form_errors.html' with errors=claim_form.tracking_number.errors %}
+        </div>
+     
+     <div x-data='{selectedOption: ""}'>
+        <div class="grid md:grid-cols-2 md:gap-6">
+            <div class="relative z-0 w-full mb-1 group">
+                <label for="claim_form.ship_date.id_for_label" class="text-gray-500">Ship Date</label>
+                {% render_field claim_form.ship_date placeholder=' ' class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" %}
+            </div>
+            {% include 'includes/claim_form_errors.html' with errors=claim_form.ship_date.errors %}
+            <div class="relative z-0 w-full mb-1 group">
+                <label for="claim_form.type_of_claim.id_for_label" class="text-gray-500">Type of Claim</label>
+                {% render_field claim_form.type_of_claim x-model="selectedOption" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" %}
+            </div>
+              {% include 'includes/claim_form_errors.html' with errors=claim_form.type_of_claim.errors %}
+        </div>
+        <div class="grid md:grid-cols-2 md:gap-6">
+            <div  x-show="selectedOption === 'DAMAGE'" class="relative z-0 w-full mb-1 group">
+                <label for="claim_form.is_item_repairable.id_for_label" class="text-gray-500">is this item repairable</label>
+                {% render_field claim_form.is_item_repairable  class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" %}
+            </div>
+            {% comment %} {% include 'includes/claim_form_errors.html' with errors=is_item_repairable.ship_date.errors %} {% endcomment %}
+            <div x-show="selectedOption === 'DAMAGE' || selectedOption === 'SHORTAGE' " class="relative z-0 w-full mb-1 group">
+                <label for="claim_form.item_damage_or_shortage_description.id_for_label" class="text-gray-500">damage / shortage description</label>
+                {% render_field claim_form.item_damage_or_shortage_description class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" %}
+            </div>
+              {% comment %} {% include 'includes/claim_form_errors.html' with errors=item_damage_or_shortage_description.type_of_claim.errors %} {% endcomment %}
+        </div>
+    </div>
+       
+        <div class="inline-flex items-center justify-center w-full">
+            <hr class="w-full h-px my-8 bg-gray-400 border-0">
+            <span class="absolute px-4 font-medium text-gray-500 -translate-x-1/2 bg-gray-100 left-1/2  d">How Much was the package worth</span>
+        </div>
+    
+
+          <div class="grid md:grid-cols-2 md:gap-6">
+            <div class="relative z-0 w-full mb-6 group">
+                <label for="claim_form.total_invoice_value.id_for_label" class=" text-gray-500 peer-focus:text-blue-600">Total Invoice Value</label>
+                {% render_field claim_form.total_invoice_value class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-300  appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" %}
+            </div>
+             {% include 'includes/claim_form_errors.html' with errors=claim_form.total_invoice_value.errors %}
+            <div class="relative z-0 w-full mb-6 group">        
+                <label for="claim_form.insured_value.id_for_label" class=" text-gray-500 ">Insured Value</label>
+                {% render_field claim_form.insured_value class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-300  appearance-none  focus:outline-none focus:ring-0" %}
+            </div>
+             {% include 'includes/claim_form_errors.html' with errors=claim_form.insured_value.errors %}
+            <div class="relative z-0 w-full mb-6 group">        
+            <label for="claim_form.amount_recovered.id_for_label" class=" text-gray-500 peer-focus:text-blue-600">Amount Recovered</label>
+                {% render_field claim_form.amount_recovered class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-300  appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" %}
+            </div>
+             {% include 'includes/claim_form_errors.html' with errors=claim_form.amount_recovered.errors %}
+              <div class="relative z-0 w-full mb-6 group">        
+            <label for="claim_form.total_claim_amount.id_for_label" class=" text-gray-500 peer-focus:text-blue-600">Total Claim Amount</label>
+                {% render_field claim_form.total_claim_amount class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-300  appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" %}
+            </div>
+             {% include 'includes/claim_form_errors.html' with errors=claim_form.total_claim_amount.errors %}
+        </div>
+
+        <div class="inline-flex items-center justify-center w-full">
+            <hr class="w-full h-px my-8 bg-gray-400 border-0">
+            <span class="absolute px-4 font-medium text-gray-500 -translate-x-1/2 bg-gray-100 left-1/2  d">Who was the package mailed to</span>
+        </div>
+
+        <div class="grid md:grid-cols-2 md:gap-6">
+            <div class="relative z-0 w-full mb-6 group">
+                {% render_field  claim_form.consignee_name placeholder=' ' class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" %}
+                <label for="claim_form.consignee_name.id_for_lable" class="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Consignee Name</label>
+            </div>
+            {% include 'includes/claim_form_errors.html' with errors=claim_form.consignee_name.errors %}
+            <div class="relative z-0 w-full mb-6 group">
+                {% render_field  claim_form.consignee_email placeholder=' ' class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"%}
+                <label for="claim_form.consignee_email.id_for_label" class="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Consignee Email</label>
+            </div>
+            {% include 'includes/claim_form_errors.html' with errors=claim_form.consignee_email.errors %}
+        </div>
+
+        <div class="grid md:grid-cols-2 md:gap-6">
+            <div class="relative z-0 w-full mb-6 group">
+                {% render_field  claim_form.consignee_country placeholder=' ' class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"%}
+                <label for="claim_form.consignee_country.id_for_label" class="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Consignee Country</label>
+            </div>
+            {% include 'includes/claim_form_errors.html' with errors=claim_form.consignee_country.errors %}
+            <div class="relative z-0 w-full mb-6 group">
+                {% render_field  claim_form.send_consignee_affidavit_request placeholder=' ' class="w-7 h-7 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" %}
+                <label for="claim_form.send_consignee_affidavit_request.id_for_lable" class="w-full text-sm font-medium text-gray-900">Send consignee affidavit request? </label>
+            </div>
+            {% include 'includes/claim_form_errors.html' with errors=claim_form.send_consignee_affidavit_request.errors %}
+        </div>
+             <div class="inline-flex items-center justify-center w-full">
+            <hr class="w-full h-px my-8 bg-gray-400 border-0">
+            <span class="absolute px-4 font-medium text-gray-500 -translate-x-1/2 bg-gray-100 left-1/2  d">Finish Up</span>
+        </div>
+        <div class="relative z-0 w-full mb-6 group">
+            {% render_field  claim_form.print_your_name placeholder=' ' class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"%}
+            <label for="claim_form.print_your_name.id_for_label" class="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Print Your Name</label>
+        </div>
+        {% include 'includes/claim_form_errors.html' with errors=claim_form.print_your_name.errors %} 
+
+        <div class="relative z-0 w-full mb-6 flex justify-center">
+           <label for="claim_form.sign_your_name.id_for_label" class="peer-focus:font-medium absolute text-sm font-bold text-gray-500 ">Sign Here</label>
+               <canvas id="signature-pad" class="signature-pad bg-slate-200 mt-2 rounded-md" width="600" height="200"></canvas>
+               <input type="hidden" name="sign_your_name" id="id_sign_your_name"  x-bind:value="signatureData">
+        </div>
+        {% include 'includes/form_errors.html' with errors=claim_form.sign_your_name.errors %}
+
+        <div class="flex justify-center">
+            <button x-on:click="setSignatureData"  class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-1/2  px-5 py-2.5 text-cente">Submit</button>
+        </div>
+    </form>
+     <button x-on:click="clearSignatureData">Clear Signature</button>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
+<script>
+    const canvas = document.querySelector('#signature-pad');
+    const signaturePad = new SignaturePad(canvas);
+    function setSignatureData(){
+        if (!signaturePad.isEmpty()) {
+           this.signatureData = signaturePad.toDataURL()
+        }
+    }
+    function clearSignatureData(){
+        signaturePad.clear()
+        this.signatureData = ''
+    }
+</script>
+{% endblock content%}

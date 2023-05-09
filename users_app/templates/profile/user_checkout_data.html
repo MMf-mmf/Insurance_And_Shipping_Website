@@ -1,0 +1,73 @@
+{% load widget_tweaks %}
+<form method="post" class='shadow-md p-6 rounded-lg basis-1/3 mb-0' x-data="{orderTotal: {{order_total}}, usersCredit: {{credit}},  creditsToApply: 0, originalTotal: {{order_total}}, originalCredit: {{credit}}  }" >
+    <h3 class="block mb-6 text-lg font-medium text-gray-900 underline text-center">{{page_header}}</h3>
+    {% csrf_token %}
+    {% include 'includes/form_errors.html' with errors=form.non_field_errors %}
+    <div class="grid gap-6 mb-6 md:grid-cols-2">
+        <div>
+            <label for="{{profile_form.first_name.id_for_label}}" class="block mb-2 text-sm font-medium text-gray-900">First name</label>
+             {% render_field profile_form.first_name type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="John" required="true"%}
+             {% include 'includes/form_errors.html' with errors=profile_form.first_name.errors %}
+        </div>
+        <div>
+            <label for="{{profile_form.last_name.id_for_label}}" class="block mb-2 text-sm font-medium text-gray-900">Last name</label>
+            {% render_field profile_form.last_name type="text"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Doe" required="true"%}
+            {% include 'includes/form_errors.html' with errors=profile_form.last_name.errors %}
+        </div>
+        <div>
+            <label for="{{profile_form.email.id_for_label}}" class="block mb-2 text-sm font-medium text-gray-900">Email</label>
+             {% render_field profile_form.email type="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Doe@example.com" required="true"%}
+            {% include 'includes/form_errors.html' with errors=profile_form.email.errors %}
+        </div>  
+        <div>
+            <label for="{{profile_form.address.id_for_label}}" class="block mb-2 text-sm font-medium text-gray-900">Address</label>
+            {% render_field profile_form.address  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="123 main street" required="true" %}
+            {% include 'includes/form_errors.html' with errors=profile_form.address.errors %}
+        </div>
+        <div>
+            <label for="{{profile_form.postal_code.id_for_label}}" class="block mb-2 text-sm font-medium text-gray-900">Postal Code</label>
+            {% render_field profile_form.postal_code type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Postal Code" required="true"%}
+            {% include 'includes/form_errors.html' with errors=profile_form.postal_code.errors %}
+        </div>
+        <div>
+            <label for="{{profile_form.city.id_for_label}}" class="block mb-2 text-sm font-medium text-gray-900">City</label>
+            {% render_field profile_form.city  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required="true" placeholder="City"%}
+            {% include 'includes/form_errors.html' with errors=profile_form.city.errors %}
+        </div>
+        {% if profile_form.discount_applied %}
+        <div>
+            <label for="{{profile_form.discount_applied.id_for_label}}" class="block mb-2 text-sm font-medium text-gray-900">Credit Applied / appy custome amount</label>
+            {% render_field profile_form.discount_applied x-bind::value="creditsToApply" x-model="creditsToApply" x-on::input="applyCustomDiscount"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required="true"%}
+            {% include 'includes/form_errors.html' with errors=profile_form.discount_applied.errors %}
+        </div>
+        <div>
+          <label>Apply Credit</label>
+          <span x-on:click="applyDiscount" class="bg-gray-50 border cursor-pointer border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" id='appyDiscount'>Click to apply Your Full Credit To  Order. Current Balence is $<strong x-text="usersCredit"></strong></span>
+        </div>
+        {% endif %}
+    </div>
+    
+    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Submit</button>
+    <span disabled class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Order Total $<span x-text="orderTotal"></span></span>
+</form> 
+
+<script>
+    function applyDiscount(){
+      if (this.originalCredit <= this.originalTotal) {
+            this.creditsToApply = this.originalCredit
+            this.orderTotal = this.originalTotal - this.originalCredit
+            this.usersCredit = 0
+          }else if (this.originalCredit > this.originalTotal & this.originalTotal > 0){
+            this.creditsToApply = this.originalTotal
+            this.usersCredit = this.originalCredit - this.originalTotal
+            this.orderTotal = this.originalTotal - this.creditsToApply
+          }
+    }
+    function applyCustomDiscount(){
+        // {orderTotal: {{order_total}}, usersCredit: {{credit}},  creditsToApply: 0, originalTotal: {{order_total}}, originalCredit: {{credit}}  }
+        if (this.creditsToApply <= this.originalTotal && this.creditsToApply <= this.originalCredit){
+            this.orderTotal = this.originalTotal - this.creditsToApply
+            this.usersCredit = this.originalCredit - this.creditsToApply
+        }
+    }
+</script>

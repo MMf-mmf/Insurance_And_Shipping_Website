@@ -1,0 +1,52 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Order Detail{% endblock %}
+{% block content%} 
+   <div class="flex flex-col items-center mt-10 mb-14">
+	<div class="mt-8">
+		<h2 class="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl">Order Detail</h2>
+	</div>
+	<div class="relative overflow-x-auto w-full px-5">
+		<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+			<thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+				<tr>
+					{% for data in DataFrame %}
+					<th scope="col" class="px-6 py-3  text-center">{{ data }}</th>
+					{% endfor %}
+				</tr>
+			</thead>``
+			<tbody>
+				{% for _, record in DataFrame.iterrows %}
+				<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+					{% for value in record %}
+					<td class="border-b p-2 text-center">{{ value }}</td>
+					{% endfor %}
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+
+    	<div class="rounded-md mt-8 w-full flex justify-center" role="group">
+			<a 
+                href="{% url 'start_claim' %}?file={{file_id}}" 
+				class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-l-lg hover:bg-gray-100 hover:text-blue-700 "
+			>
+				Create Dispute
+			</a>
+			<button disabled class='class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200  focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 '>
+				<span class="  font-bold py-2 px-4 rounded-l-lg mr-[-5]"
+					>Total Price</span
+				>
+				<span class="  font-bold py-2 px-4 rounded-r-lg">${{total_price}}</span>
+			</button>
+            <form
+			class="px-4 py-2 m-0 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-r-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700"
+			action="{% url 'pricing_app:download_shipments_with_pricing' file_id %}"
+			method="post"
+		>
+			{% csrf_token %}
+			<input type="submit" value="Download File"  />
+		</form>
+	</div>
+{% endblock content%}

@@ -1,0 +1,26 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}Get A Quote{% endblock %}
+
+
+
+{% block content %}
+
+    <h1>Welcome to allin1ship insurance offerings</h1>
+    <h3>Download our template, Once the correct is fill out, Please Uplaod.</h3>
+    <div class='download_spreadsheets'>
+       
+    <form action="{% url 'pricing_app:download_shipments_template' %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Download Template">
+    </form>
+
+    <form action="{% url 'pricing_app:download_shipments_sample' %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Download Sample File">
+    </form>
+</div>
+    {% comment %} include file_upload.html {% endcomment %}
+    {% include 'fragments/file_upload.html' %}
+{% endblock %}

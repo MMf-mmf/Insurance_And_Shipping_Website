@@ -1,0 +1,27 @@
+{% load static %}
+<html class="scroll-smooth">
+  <head>
+    <meta charset="utf-8">
+    {% block css %}{% endblock css %}
+    <title>{% block title %}Ship Secure{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/tailwind_output.css' %}">
+  </head>
+
+  <body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' class="flex flex-col h-screen justify-between">
+    <header>
+      {% include 'base/menu.html'%}
+    </header>
+   
+    <main class="grow bg-gray-100">
+     
+      {% include  'includes/messages.html'%}
+      {% block content %}
+     
+      {% endblock %}
+    </main>
+    
+    {% include 'fragments/footer.html' %}
+	{% include 'base/base_js_imports.html' %}
+  </body>
+
+</html>

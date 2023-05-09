@@ -1,0 +1,129 @@
+{% extends 'base/base.html' %}
+{% load widget_tweaks %}
+
+
+{% block title %}Welcome To AllinOneShip{% endblock %}
+{% block content%}
+
+    {% comment %} HEAD SECTION {% endcomment %}
+    <div class='flex flex-col justify-start h-screen mt-10'>
+        <div class='flex  flex-col text-center mt-10'>
+            <h1 class="mb-4 text-8xl font-extrabold leading-none tracking-tight text-gray-900 md:text-8xl lg:text-8xl ">
+                <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">Ship.Insure.Repeat.</span>
+            </h1>
+            <p class="mb-6 mt-5 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48">Streamline your shipping with allinOneShip, we take care of the complex stuff so you can focus on what you do best join our network of satisfied clients tody.</p>
+            <div class="flex justify-center mt-6">
+                <a href="{% url 'shipping_quote' %}" class="text-white bg-[#1da1f2] hover:bg-[#1da1f2]/90 focus:ring-4 focus:outline-none focus:ring-[#1da1f2]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#1da1f2]/55 mr-2 mb-2 shadow-md">
+                    <svg class="h-5 w-5 mr-1" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"></path>
+                    </svg>
+                    Start Shipping
+                </a>
+                <a href="#uploadFile" class="text-white bg-[#24292F] hover:bg-[#24292F]/90 focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30 mr-2 mb-2 shadow-md">
+                    <svg class="h-5 w-5 mr-1" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"></path>
+                    </svg>
+                        Insure Your Shipments
+                </a>
+            </div>
+        </div>
+
+
+        {% comment %} STATISTICS {% endcomment %}
+        <div class="mt-[3%]  rounded-lg md:p-8 flex justify-center">
+            <dl class="flex flex-wrap justify-center gap-8 p-4 text-gray-900 sm:grid-cols-3 xl:grid-cols-6 sm:p-8 w-9/12  shadow-lg">
+                <div class="flex flex-col items-center justify-center basis-1/4">
+                    <dt class="mb-2 text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">3.5M+</dt>
+                    <dd class="font-light text-gray-500 dark:text-gray-400">Shipments</dd>
+                </div>
+                <div class="flex flex-col items-center justify-center basis-1/4">
+                    <dt class="mb-2 text-3xl font-extrabold ">150+</dt>
+                    <dd class="font-light text-gray-500 dark:text-gray-400">Satisfied customers</dd>
+                </div>
+                <div class="flex flex-col items-center justify-center basis-1/4">
+                    <dt class="mb-2 text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">1000H+</dt>
+                    <dd class="font-light text-gray-500 dark:text-gray-400">Customer Service</dd>
+                </div>
+            </dl>
+        </div>
+    </div>
+
+    <div class='flex flex-col justify-start h-screen'>
+    {% comment %} SHIPMENTS FILE UPLOAD {% endcomment %}
+        <div class="mt-[3%]  rounded-lg md:p-8  flex justify-center" id="uploadFile">
+            <div class="w-9/12  shadow-lg">
+                <div class="flex justify-center">
+                    <h1 class="mt-8 mb-[5%] text-2xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-3xl "><span class="underline underline-offset-3 decoration-8 decoration-blue-400 dark:decoration-blue-600"> Insure Your Shipments</span></h1>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="w-1/2 ">
+                        <form action="{% url 'pricing_app:upload_shipments_file'%}" method="POST" enctype="multipart/form-data" class="flex flex-col items-center ">
+                            {% csrf_token %}
+                             {% include 'includes/form_errors.html' with errors=file_upload_form.non_field_errors %}
+                            <label class="block font-bold mb-2 text-sm text-lg text-gray-900 dark:text-white" for="file_input">Upload file</label>
+                            {% render_field file_upload_form.file  class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="file_input_help" %}
+                            {% comment %} <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">Please Upload Your Shipments in .CSV format</p> {% endcomment %}
+                            <button type="submit" class="text-white w-1/2 mt-9 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        {% comment %} UPLOAD INSTRUCTIONS {% endcomment %}
+        <div class=" rounded-lg md:p-8 flex justify-center">
+            <div class="w-9/12  shadow-md p-10" id="accordion-flush" data-accordion="collapse" data-active-classes="bg-gray-200 dark:bg-gray-800 text-gray-900 dark:text-white" data-inactive-classes="text-gray-500 dark:text-gray-400">
+                <h1 class='text-center text-lg font-bold border-b'>File Upload Instructions</h1>
+                <h2 id="accordion-flush-heading-1">
+                    <button type="button" class="bg-gray-100 rounded-lg px-3 flex items-center justify-between w-full py-5 font-medium text-left text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400" data-accordion-target="#accordion-flush-body-1" aria-expanded="true" aria-controls="accordion-flush-body-1">
+                    <span>What Should my Uploaded Template loop like</span>
+                    <svg data-accordion-icon class="w-6 h-6 rotate-180 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    </button>
+                </h2>
+                <div id="accordion-flush-body-1" class="hidden" aria-labelledby="accordion-flush-heading-1">
+                    <div class="py-5 font-light border-b border-gray-200 dark:border-gray-700">
+                        <p class="mb-2 text-gray-500 dark:text-gray-400">Our systems will only process files that have an exact resemblance to the format in the template and example files that are both available for download.</p>
+                        <p class="text-gray-500 dark:text-gray-400">Please make sure the names of the headers are the same as the <a href="{% url 'pricing_app:download_shipments_template' %}" class="text-blue-600 dark:text-blue-500 hover:underline">Download Template File</a>.</p>
+                    </div> 
+                </div>
+                <h2 id="accordion-flush-heading-2">
+                    <button type="button" class="bg-gray-100 rounded-lg px-3 flex items-center justify-between w-full py-5 font-medium text-left text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400" data-accordion-target="#accordion-flush-body-2" aria-expanded="false" aria-controls="accordion-flush-body-2">
+                    <span>Is there a Starter template for me to download</span>
+                    <svg data-accordion-icon class="w-6 h-6 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    </button>
+                </h2>
+                <div id="accordion-flush-body-2" class="hidden" aria-labelledby="accordion-flush-heading-2">
+                    <div class="py-5 font-light border-b border-gray-200 dark:border-gray-700">
+                        <p class="mb-2 text-gray-500 dark:text-gray-400">Have a close look at our example template to see the format, as well as the info our system needs to provide insurence for a shipment.</p>
+                        <p class="text-gray-500 dark:text-gray-400">Please make sure the data you wish to upload matches the exact format in the <a href="{% url 'pricing_app:download_shipments_sample' %}" class="text-blue-600 dark:text-blue-500 hover:underline">Download Sample File</a>.</p>
+                    </div>
+                </div>
+                <h2 id="accordion-flush-heading-3">
+                    <button type="button" class="bg-gray-100 rounded-lg px-3 flex items-center justify-between w-full py-5 font-medium text-left text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400" data-accordion-target="#accordion-flush-body-3" aria-expanded="false" aria-controls="accordion-flush-body-3">
+                    <span>What should be done one the template is filled out with all the shipments i wish to upload</span>
+                    <svg data-accordion-icon class="w-6 h-6 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    </button>
+                </h2>
+                <div id="accordion-flush-body-3" class="hidden" aria-labelledby="accordion-flush-heading-3">
+                    <div class="py-5 font-light border-b border-gray-200 dark:border-gray-700">
+                    <p class="mb-2 text-gray-500">Once you fill out the template with the correctly formatted shipment data, upload the file and you will either be redirected to a breakdown page with pricing or the appropriate errors will be displayed for you to fix and attempt the upload again.
+</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% comment %} PRICING SECTION {% endcomment %}
+<section class="" id="pricing_section">
+  <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+      <div class="mx-auto max-w-screen-md text-center mb-8 lg:mb-12">
+          <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Pricing for all stages of your business</h2>
+          <p class="font-light text-gray-500 sm:text-xl dark:text-gray-400">Pricing below represents an average cost across more than 10 shipping services</p>
+          <p class="mb-5 font-light text-gray-500 sm:text-xl dark:text-gray-400">see <a href="{% url 'pricing_app:pricing'%}#detailed-pricing" class="text-blue-600 font dark:text-blue-500 hover:underline"> Pricing Breakdown</a> for a more details</p>
+      </div>
+      {% include 'fragments/insurance_pricing_cards_fragment.html' with minimum_spend=minimum_spend %}
+    </div>
+</section>
+{% endblock %}

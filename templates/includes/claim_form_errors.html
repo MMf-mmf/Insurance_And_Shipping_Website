@@ -1,0 +1,7 @@
+{% for error in errors %}
+    <div class="ml-3 text-sm text-red-700">
+        <div><strong>{{ error|escape }}</strong></div>
+    </div>
+{% empty %}
+
+{% endfor %}

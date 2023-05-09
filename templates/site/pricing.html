@@ -1,0 +1,182 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}Pricing{% endblock %}
+
+
+
+{% block content %}
+
+<section class="w-full flex flex-col justify-center">
+  <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+      <div class="mx-auto max-w-screen-md text-center mb-8 lg:mb-12">
+          <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900">Pricing for all stages of your business</h2>
+          <p class="mb-5 font-light text-gray-500 sm:text-xl">Here at AllinOneShip we lower our bottom line to raise yours.</p>
+      </div>
+        {% include 'fragments/insurance_pricing_cards_fragment.html' %}
+          {% comment %} PRICING TABEL COMPARICAN {% endcomment %}
+            <div id="detailed-pricing" class="w-full overflow-x-auto mt-9 rounded-lg border bg-white border-gray-100 shadow">
+                <div class="overflow-hidden min-w-max text-center">
+                    <div class="grid grid-cols-4 p-4 text-sm font-medium text-gray-900   border-gray-400 gap-x-16">
+                        <div>Shipping services</div>
+                        <div>Guest</div>
+                        <div>Company</div>
+                        <div>Enterprise</div>
+                    </div>
+                    {% comment %} rows {% endcomment %}
+                    <div class="grid grid-cols-4 px-4 py-5 text-sm text-gray-700 border-t border-gray-400 gap-x-16 ">
+                        <div class="text-gray-500">DHL eCommerce</div>
+                        <div>
+                            <span>$0.75</span>
+                        </div>
+                        <div>
+                            <span>$0.50</span>
+                        </div>
+                        <div>
+                           <span>$0.36</span>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-4 px-4 py-5 text-sm text-gray-700 border-t border-gray-400 gap-x-16 ">
+                         <div class="text-gray-500">DHL eCommerce International</div>
+                          <div>
+                            <span>$0.75</span>
+                         </div>
+                         <div>
+                            <span>$0.59</span>
+                         </div>
+                         <div>
+                           <span>$0.45</span>
+                         </div>
+                    </div>
+                    <div class="grid grid-cols-4 px-4 py-5 text-sm text-gray-700 border-t border-gray-400 gap-x-16 ">
+                         <div class="text-gray-500">DHL Express Domestic</div>
+                         <div>
+                            <span>$0.75</span>
+                        </div>
+                        <div>
+                            <span>$0.50</span>
+                        </div>
+                        <div>
+                           <span>$0.36</span>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-4 px-4 py-5 text-sm text-gray-700 border-t border-gray-400 gap-x-16 ">
+                        <div class="text-gray-500">DHL Express International</div>
+                          <div>
+                            <span>$0.75</span>
+                        </div>
+                        <div>
+                            <span>$0.59</span>
+                        </div>
+                        <div>
+                           <span>$0.36</span>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-4 px-4 py-5 text-sm text-gray-700 border-t border-gray-400 gap-x-16 ">
+                        <div class="text-gray-500">FedEx Domestic</div>
+                          <div>
+                            <span>$0.75</span>
+                        </div>
+                        <div>
+                            <span>$0.50</span>
+                        </div>
+                        <div>
+                           <span>$0.36</span>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-4 px-4 py-5 text-sm text-gray-700 border-t border-gray-400 gap-x-16 ">
+                        <div class="text-gray-500">FedEx International</div>
+                          <div>
+                            <span>$0.75</span>
+                        </div>
+                        <div>
+                            <span>$0.50</span>
+                        </div>
+                        <div>
+                           <span>$0.45</span>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-4 px-4 py-5 text-sm text-gray-700 border-t border-gray-400 gap-x-16 ">
+                        <div class="text-gray-500">LaserShip Domestic</div>
+                          <div>
+                            <span>$0.75</span>
+                        </div>
+                        <div>
+                            <span>$0.50</span>
+                        </div>
+                        <div>
+                           <span>$0.36</span>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-4 px-4 py-5 text-sm text-gray-700 border-t border-gray-400 gap-x-16 ">
+                        <div class="text-gray-500">UPS Domestic</div>
+                          <div>
+                            <span>$0.75</span>
+                        </div>
+                        <div>
+                            <span>$0.50</span>
+                        </div>
+                        <div>
+                           <span>$0.36</span>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-4 px-4 py-5 text-sm text-gray-700 border-t border-gray-400 gap-x-16 ">
+                        <div class="text-gray-500">UPS Domestic B to B</div>
+                          <div>
+                            <span>$0.75</span>
+                        </div>
+                        <div>
+                            <span>$0.50</span>
+                        </div>
+                        <div>
+                           <span>$0.36</span>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-4 px-4 py-5 text-sm text-gray-700 border-t border-gray-400 gap-x-16 ">
+                        <div class="text-gray-500">UPS International</div>
+                          <div>
+                            <span>$0.75</span>
+                        </div>
+                        <div>
+                            <span>$0.59</span>
+                        </div>
+                        <div>
+                           <span>$0.36</span>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-4 px-4 py-5 text-sm text-gray-700 border-t border-gray-400 gap-x-16 ">
+                        <div class="text-gray-500">USPS Domestic</div>
+                          <div>
+                            <span>$0.75</span>
+                        </div>
+                        <div>
+                            <span>$0.50</span>
+                        </div>
+                        <div>
+                           <span>$0.36</span>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-4 px-4 py-5 text-sm text-gray-700 border-t border-gray-400 gap-x-16 ">
+                        <div class="text-gray-500">USPS International</div>
+                          <div>
+                            <span>$0.75</span>
+                        </div>
+                        <div>
+                            <span>$0.59</span>
+                        </div>
+                        <div>
+                           <span>$0.45</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+      </div>
+  </div>
+     <div id="valume_credit" class="mx-auto max-w-screen-md text-center mb-8 lg:mb-12">
+          <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900">Increase savings by uppbing the volume</h2>
+          <p class="mb-5 font-light text-gray-500 sm:text-xl">If your Total insurence bill exceeds ${{minimum_spend}}, enterprise pricing will apply to all the shipments purchased starting from the first of the month up until the last day of that month. a credit of the due amount will be added to your account and can be used for subsequent purchases</p>
+      </div>
+</section>
+
+
+{% endblock %}

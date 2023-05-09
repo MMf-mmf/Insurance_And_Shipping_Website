@@ -1,0 +1,14 @@
+{% extends 'base/base.html' %}
+
+
+
+{% block title %}Chekcout{% endblock %}
+{% block content%}
+    <div class="w-full flex justify-center mt-10">
+        <h1 class='text-center'></h1>
+        <div class='w-4/5'>
+            {% include 'profile/user_checkout_data.html' with page_header='Checkout Info' %}
+        </div>
+    </div>
+    
+{% endblock %}

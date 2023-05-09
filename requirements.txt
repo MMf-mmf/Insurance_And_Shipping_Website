@@ -1,0 +1,26 @@
+Django
+environs[django] # to get enviroment varubels mainleyl in the settings file
+psycopg2-binary  # for django to connect with postgresql data base
+psycopg2-pool
+postgres
+Pillow           # for django to work with images
+stripe           # for django to work with payments
+django-htmx      # javascript libraray to make ajax request and swap out dom elements
+whitenoise       # for django to serve static files
+pandas           # for data analysis,as well as working with the csv files
+django-allauth   # authentication framework
+django-widget-tweaks # to add css classes and other attributes directrly in the html to elements given to us from a django form
+django-sendgrid-v5 # to send emails
+django-cleanup   # to delete files from the media folder when the model is deleted
+django-storages[google]  # store files on google cloude storage
+google-auth    # connect to google api's currnetly used to connect to google cloude storage
+django_browser_reload
+django-countries # for the list of countries dropdown
+# DEVELOPMENT
+django-debug-toolbar
+intuit-oauth    # to use the intuit api
+# development not in use as of new
+django-extensions # to use django shell_plus
+# werkzeug          # to server the server with ssl and shell_plus
+# pyopenssl, # for development to server with https
+gunicorn
